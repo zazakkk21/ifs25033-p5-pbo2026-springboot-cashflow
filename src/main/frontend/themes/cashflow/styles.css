@@ -71,6 +71,16 @@ vaadin-app-layout::part(drawer) {
   gap: 12px;
 }
 
+.profile-avatar-link {
+  display: flex;
+  border-radius: 50%;
+}
+
+.profile-avatar-link:focus-visible {
+  outline: 2px solid var(--lumo-primary-color);
+  outline-offset: 3px;
+}
+
 .navbar-user-name {
   color: #334155;
   font-size: 0.92rem;
@@ -146,6 +156,31 @@ vaadin-app-layout::part(drawer) {
 .content-page > h2 {
   color: #0f172a;
   letter-spacing: -0.04em;
+}
+
+.profile-dashboard-link {
+  align-self: flex-start;
+  margin-bottom: 8px;
+  color: #1d4ed8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.profile-dashboard-link:hover {
+  text-decoration: underline;
+}
+
+.profile-photo-preview {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.profile-photo-preview:focus-visible {
+  outline: 2px solid var(--lumo-primary-color);
+  outline-offset: 3px;
 }
 
 .content-page vaadin-text-field,

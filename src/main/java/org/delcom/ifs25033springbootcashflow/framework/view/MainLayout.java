@@ -56,6 +56,10 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
             if (user.getPhotoPath() != null) {
                 avatar.setImage("/uploads/" + user.getPhotoPath());
             }
+            RouterLink profileAvatar = new RouterLink(ProfileView.class);
+            profileAvatar.addClassName("profile-avatar-link");
+            profileAvatar.getElement().setAttribute("aria-label", "Buka profil");
+            profileAvatar.add(avatar);
             Button logout = new Button("Keluar", event -> {
                 AuthSession.logout();
                 UI.getCurrent().navigate("login");
@@ -63,7 +67,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
             logout.addClassName("logout-button");
             Span name = new Span(user.getFullName());
             name.addClassName("navbar-user-name");
-            HorizontalLayout userMenu = new HorizontalLayout(avatar, name, logout);
+            HorizontalLayout userMenu = new HorizontalLayout(profileAvatar, name, logout);
             userMenu.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
             userMenu.addClassName("navbar-user-menu");
             addToNavbar(userMenu);

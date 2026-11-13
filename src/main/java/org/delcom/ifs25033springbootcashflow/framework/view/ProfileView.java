@@ -1,6 +1,7 @@
 package org.delcom.ifs25033springbootcashflow.framework.view;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
@@ -11,6 +12,7 @@ import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouterLink;
 import org.delcom.ifs25033springbootcashflow.adapter.storage.FileStorage;
 import org.delcom.ifs25033springbootcashflow.domain.entity.User;
 import org.delcom.ifs25033springbootcashflow.domain.exception.DomainException;
@@ -33,7 +35,9 @@ public class ProfileView extends VerticalLayout {
         this.user = AuthSession.currentUser(userRepository).orElseThrow();
         addClassName("content-page");
         setPadding(true);
-        add(new H2("Profil pengguna"));
+        RouterLink dashboardLink = new RouterLink("Kembali ke Dashboard", FinanceView.class);
+        dashboardLink.addClassName("profile-dashboard-link");
+        add(new H2("Profil pengguna"), dashboardLink);
         TextField username = new TextField("Username");
         username.setValue(user.getUsername());
         username.setReadOnly(true);
@@ -42,11 +46,19 @@ public class ProfileView extends VerticalLayout {
         fullName.setMaxLength(200);
         PasswordField password = new PasswordField("Password baru (opsional)");
         if (user.getPhotoPath() != null) {
-            Image photo = new Image("/uploads/" + user.getPhotoPath(), "Foto profil");
+            String photoUrl = "/uploads/" + user.getPhotoPath();
+            Image photo = new Image(photoUrl, "Foto profil");
             photo.setWidth("120px");
             photo.setHeight("120px");
-            photo.getStyle().set("object-fit", "cover").set("border-radius", "50%");
-            add(photo);
+            photo.getStyle().set("object-fit", "cover").set("border-radius", "50%").set("cursor", "zoom-in");
+            Image enlargedPhoto = new Image(photoUrl, "Foto profil diperbesar");
+            enlargedPhoto.getStyle().set("max-width", "85vw").set("max-height", "75vh").set("object-fit", "contain");
+            Dialog photoPreview = new Dialog();
+            photoPreview.add(enlargedPhoto, new Button("Tutup", event -> photoPreview.close()));
+            Button photoButton = new Button(photo, event -> photoPreview.open());
+            photoButton.addClassName("profile-photo-preview");
+            photoButton.getElement().setAttribute("aria-label", "Perbesar foto profil");
+            add(photoButton);
         }
         MemoryBuffer buffer = new MemoryBuffer();
         Upload upload = new Upload(buffer);
