@@ -10,9 +10,12 @@ public final class PasswordHasher {
     }
 
     public static String hash(String password) {
+        return hash(password, () -> MessageDigest.getInstance("SHA-256"));
+    }
+
+    static String hash(String password, DigestFactory digestFactory) {
         try {
-            byte[] digest = MessageDigest.getInstance("SHA-256")
-                    .digest(password.getBytes(StandardCharsets.UTF_8));
+            byte[] digest = digestFactory.create().digest(password.getBytes(StandardCharsets.UTF_8));
             return HexFormat.of().formatHex(digest);
         } catch (NoSuchAlgorithmException exception) {
             throw new IllegalStateException("SHA-256 tidak tersedia", exception);
@@ -23,5 +26,10 @@ public final class PasswordHasher {
         return hash != null && MessageDigest.isEqual(
                 hash(password).getBytes(StandardCharsets.US_ASCII),
                 hash.getBytes(StandardCharsets.US_ASCII));
+    }
+
+    @FunctionalInterface
+    interface DigestFactory {
+        MessageDigest create() throws NoSuchAlgorithmException;
     }
 }

@@ -3,18 +3,26 @@ package org.delcom.ifs25033springbootcashflow;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 public final class DotEnv {
     private DotEnv() {
     }
 
     public static void load() {
-        Path envFile = Path.of(".env");
+        load(Path.of(".env"));
+    }
+
+    static void load(Path envFile) {
+        load(envFile, Files::readAllLines);
+    }
+
+    static void load(Path envFile, LinesReader reader) {
         if (!Files.isRegularFile(envFile)) {
             return;
         }
         try {
-            for (String line : Files.readAllLines(envFile)) {
+            for (String line : reader.readAllLines(envFile)) {
                 String trimmed = line.trim();
                 if (trimmed.isEmpty() || trimmed.startsWith("#")) {
                     continue;
@@ -35,5 +43,10 @@ public final class DotEnv {
         } catch (IOException exception) {
             throw new IllegalStateException("Gagal membaca file .env", exception);
         }
+    }
+
+    @FunctionalInterface
+    interface LinesReader {
+        List<String> readAllLines(Path file) throws IOException;
     }
 }
