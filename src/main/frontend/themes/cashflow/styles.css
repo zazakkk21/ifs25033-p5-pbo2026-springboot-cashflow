@@ -336,7 +336,7 @@ vaadin-app-layout::part(drawer) {
   text-transform: uppercase;
 }
 
-.transaction-grid::part(row):hover [part~="body-cell"] {
+.transaction-grid::part(row):hover {
   background: #f8fbff;
 }
 

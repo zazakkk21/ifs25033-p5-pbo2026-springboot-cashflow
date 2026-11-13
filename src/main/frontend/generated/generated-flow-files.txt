@@ -2,6 +2,8 @@ app-shell-imports.d.ts
 app-shell-imports.js
 flow\Flow.tsx
 flow\ReactAdapter.tsx
+flow\chunks\chunk-3076be9f31fdbb7020c1d2625511512c89f5f171853442171aca610f6a505700.js
+flow\chunks\chunk-9dd274906f49628d8bbdc4cfede3b3de8f0bab64bced0a1b6df6db55ff79d13f.js
 flow\generated-flow-imports.d.ts
 flow\generated-flow-imports.js
 flow\generated-flow-webcomponent-imports.js
@@ -426,7 +428,6 @@ jar-resources\messageListConnector.js
 jar-resources\theme-util.js
 jar-resources\tooltip.ts
 jar-resources\treeGridConnector.ts
-jar-resources\tsconfig.json
 jar-resources\vaadin-big-decimal-field.js
 jar-resources\vaadin-combo-box\comboBoxConnector.ts
 jar-resources\vaadin-combo-box\vaadin-combo-box-types.d.ts
@@ -469,4 +470,3 @@ theme.js
 vaadin-featureflags.js
 vaadin-react.tsx
 vaadin.ts
-vite-devmode.ts
