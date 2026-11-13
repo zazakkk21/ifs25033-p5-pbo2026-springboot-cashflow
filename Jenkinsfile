@@ -330,6 +330,7 @@ pipeline {
                     def redeployResponse = sh(
                         script: '''
                             set -e
+                            set +x
 
                             curl -sS --fail-with-body \
                                 -X POST "$URL_REDEPLOY" \
@@ -378,6 +379,7 @@ pipeline {
                         def progressResponse = sh(
                             script: '''
                                 set -e
+                                set +x
 
                                 curl -sS --fail-with-body \
                                     -X POST "$URL_PROGRESS" \
