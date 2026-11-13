@@ -37,9 +37,11 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         sidebar.add(logo);
         RouterLink dashboard = new RouterLink("Dashboard", FinanceView.class);
         dashboard.addClassName("sidebar-link");
+        RouterLink transactions = new RouterLink("Riwayat transaksi", TransactionsView.class);
+        transactions.addClassName("sidebar-link");
         RouterLink profile = new RouterLink("Profil", ProfileView.class);
         profile.addClassName("sidebar-link");
-        sidebar.add(dashboard, profile);
+        sidebar.add(dashboard, transactions, profile);
         var currentUser = AuthSession.currentUser(userRepository);
         currentUser.filter(user -> user.getRole() == Role.ADMIN).ifPresent(user -> {
             RouterLink users = new RouterLink("Pengguna", UsersView.class);
