@@ -78,7 +78,8 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
-        if (AuthSession.currentUser(userRepository).isEmpty()) {
+        if (AuthSession.currentUser(userRepository).isEmpty()
+                && !TransactionsView.class.equals(event.getNavigationTarget())) {
             event.forwardTo("login");
         }
     }
