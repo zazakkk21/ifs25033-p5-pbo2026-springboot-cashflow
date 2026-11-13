@@ -1,0 +1,32 @@
+spring:
+  config:
+    import: "optional:file:.env[.properties]"
+  application:
+    name: ifs25033-p5-pbo2026-springboot-cashflow
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:pbo2026_cashflow}}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER_CLASS_NAME:org.postgresql.Driver}
+  sql:
+    init:
+      mode: never
+  devtools:
+    restart:
+      enabled: true
+      poll-interval: 1s
+      quiet-period: 400ms
+server:
+  port: ${APP_PORT:${PORT:8080}}
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        name: CASHFLOWSESSION
+        http-only: true
+app:
+  root-username: ${ROOT_USERNAME:admin}
+  root-password: ${ROOT_PASSWORD:admin}
+  upload-dir: ${UPLOAD_DIR:uploads}
+vaadin:
+  launch-browser: false
