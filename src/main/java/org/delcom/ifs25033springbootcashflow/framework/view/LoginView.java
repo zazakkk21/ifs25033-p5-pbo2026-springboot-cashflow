@@ -37,10 +37,10 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         subtitle.addClassName("auth-subtitle");
         card.add(heading, subtitle);
         TextField username = new TextField("Username");
-        username.setId("login-username");
+        username.getElement().executeJs("this.inputElement.id = $0", "login-username");
         username.setWidthFull();
         PasswordField password = new PasswordField("Password");
-        password.setId("login-password");
+        password.getElement().executeJs("this.inputElement.id = $0", "login-password");
         password.setWidthFull();
         Button submit = new Button("Masuk", event -> {
             try {
