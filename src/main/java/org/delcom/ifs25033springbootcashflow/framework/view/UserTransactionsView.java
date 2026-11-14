@@ -1,7 +1,7 @@
 package org.delcom.ifs25033springbootcashflow.framework.view;
 
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
@@ -28,6 +28,7 @@ public class UserTransactionsView extends VerticalLayout implements HasUrlParame
     private final UserUseCase userUseCase;
     private final FinanceUseCase financeUseCase;
     private final FinancePresenter presenter;
+    private final H1 heading = new H1("Transaksi pengguna");
 
     public UserTransactionsView(IUserRepository userRepository, UserUseCase userUseCase,
                                 FinanceUseCase financeUseCase, FinancePresenter presenter) {
@@ -36,6 +37,8 @@ public class UserTransactionsView extends VerticalLayout implements HasUrlParame
         this.financeUseCase = financeUseCase;
         this.presenter = presenter;
         setPadding(true);
+        heading.addClassName("user-transactions-heading");
+        add(heading);
     }
 
     @Override
@@ -50,7 +53,7 @@ public class UserTransactionsView extends VerticalLayout implements HasUrlParame
         try {
             int userId = Integer.parseInt(parameter);
             User user = userUseCase.getUser(userId);
-            add(new H2("Transaksi: " + user.getFullName() + " (read-only)"));
+            heading.setText("Transaksi: " + user.getFullName() + " (read-only)");
             Grid<Transaction> grid = new Grid<>(Transaction.class, false);
             grid.addColumn(Transaction::getId).setHeader("ID").setAutoWidth(true);
             grid.addColumn(presenter::formatDate).setHeader("Waktu");

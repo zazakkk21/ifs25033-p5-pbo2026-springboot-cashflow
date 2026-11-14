@@ -6,7 +6,7 @@ import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
@@ -60,7 +60,7 @@ public class FinanceView extends VerticalLayout {
         setSpacing(true);
         Div heading = new Div();
         heading.addClassName("page-heading");
-        heading.add(new H3("Ringkasan keuangan"), new Span("Pantau arus kas dan catat transaksi harian Anda."));
+        heading.add(new H1("Ringkasan keuangan"), new Span("Pantau arus kas dan catat transaksi harian Anda."));
         HorizontalLayout summary = new HorizontalLayout(
                 summaryCard("Transaksi", total),
                 summaryCard("Pemasukan", income),

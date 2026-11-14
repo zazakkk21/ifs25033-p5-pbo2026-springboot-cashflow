@@ -2,7 +2,7 @@ package org.delcom.ifs25033springbootcashflow.framework.view;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -37,7 +37,7 @@ public class ProfileView extends VerticalLayout {
         setPadding(true);
         RouterLink dashboardLink = new RouterLink("Kembali ke Dashboard", FinanceView.class);
         dashboardLink.addClassName("profile-dashboard-link");
-        add(new H2("Profil pengguna"), dashboardLink);
+        add(new H1("Profil pengguna"), dashboardLink);
         TextField username = new TextField("Username");
         username.setValue(user.getUsername());
         username.setReadOnly(true);

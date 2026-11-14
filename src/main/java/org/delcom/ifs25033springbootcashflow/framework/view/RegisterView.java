@@ -4,7 +4,8 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -30,9 +31,11 @@ public class RegisterView extends VerticalLayout implements BeforeEnterObserver 
         addClassName("auth-page");
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
+        Main main = new Main();
+        main.addClassName("auth-main");
         Div card = new Div();
         card.addClassName("auth-card");
-        card.add(new H2("Buat akun Cashflow"));
+        card.add(new H1("Buat akun Cashflow"));
         Span subtitle = new Span("Mulai catat pemasukan dan pengeluaran Anda dengan rapi.");
         subtitle.addClassName("auth-subtitle");
         card.add(subtitle);
@@ -55,7 +58,8 @@ public class RegisterView extends VerticalLayout implements BeforeEnterObserver 
         Anchor login = new Anchor("login", "Sudah punya akun? Masuk");
         login.addClassName("auth-link");
         card.add(fullName, username, password, submit, login);
-        add(card);
+        main.add(card);
+        add(main);
     }
 
     @Override

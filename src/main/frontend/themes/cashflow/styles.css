@@ -3,6 +3,11 @@
   --lumo-primary-color-50pct: rgba(37, 99, 235, 0.5);
   --lumo-primary-color-10pct: rgba(37, 99, 235, 0.1);
   --lumo-primary-text-color: #1d4ed8;
+  --cashflow-muted-text-color: #5f6b7a;
+  --lumo-secondary-text-color: var(--cashflow-muted-text-color);
+  --vaadin-input-field-label-color: var(--cashflow-muted-text-color);
+  --vaadin-input-field-helper-color: var(--cashflow-muted-text-color);
+  --vaadin-input-field-placeholder-color: var(--cashflow-muted-text-color);
   --lumo-border-radius-m: 12px;
   --lumo-border-radius-l: 18px;
   --lumo-font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -29,6 +34,11 @@ vaadin-app-layout::part(drawer) {
 .cashflow-sidebar {
   box-sizing: border-box;
   padding: 28px 18px;
+}
+
+.cashflow-navigation {
+  width: 100%;
+  height: 100%;
 }
 
 .brand-mark {
@@ -62,7 +72,7 @@ vaadin-app-layout::part(drawer) {
 
 .sidebar-caption {
   margin-top: auto;
-  color: #94a3b8;
+  color: var(--cashflow-muted-text-color);
   font-size: 0.82rem;
   line-height: 1.5;
 }
@@ -88,7 +98,7 @@ vaadin-app-layout::part(drawer) {
 }
 
 .logout-button {
-  color: #64748b;
+  color: var(--cashflow-muted-text-color);
 }
 
 .finance-page {
@@ -121,7 +131,11 @@ vaadin-app-layout::part(drawer) {
   box-shadow: 0 24px 70px rgba(15, 23, 42, 0.1);
 }
 
-.auth-card h2 {
+.auth-main {
+  width: min(100%, 440px);
+}
+
+.auth-card h1 {
   margin: 0;
   color: #0f172a;
   font-size: 1.8rem;
@@ -130,7 +144,7 @@ vaadin-app-layout::part(drawer) {
 
 .auth-subtitle {
   margin-top: -8px;
-  color: #64748b;
+  color: var(--cashflow-muted-text-color);
   line-height: 1.55;
 }
 
@@ -153,8 +167,10 @@ vaadin-app-layout::part(drawer) {
   padding: 32px clamp(18px, 3vw, 40px);
 }
 
-.content-page > h2 {
+.content-page > h1,
+.user-transactions-heading {
   color: #0f172a;
+  font-size: var(--lumo-font-size-xxl);
   letter-spacing: -0.04em;
 }
 
@@ -189,7 +205,7 @@ vaadin-app-layout::part(drawer) {
   width: min(100%, 36rem);
 }
 
-.page-heading h3 {
+.page-heading h1 {
   margin: 0;
   color: #0f172a;
   font-size: clamp(1.55rem, 2.4vw, 2rem);
@@ -199,7 +215,7 @@ vaadin-app-layout::part(drawer) {
 .page-heading > span {
   display: inline-block;
   margin-top: 7px;
-  color: #64748b;
+  color: var(--cashflow-muted-text-color);
 }
 
 .summary-grid {
@@ -226,7 +242,7 @@ vaadin-app-layout::part(drawer) {
 }
 
 .summary-label {
-  color: #64748b;
+  color: var(--cashflow-muted-text-color);
   font-size: 0.88rem;
   font-weight: 600;
 }
@@ -239,11 +255,11 @@ vaadin-app-layout::part(drawer) {
 }
 
 .summary-card:nth-child(2) .summary-value {
-  color: #059669;
+  color: #047857;
 }
 
 .summary-card:nth-child(3) .summary-value {
-  color: #e11d48;
+  color: #be123c;
 }
 
 .summary-card:nth-child(4) {
@@ -341,7 +357,7 @@ vaadin-button:focus-visible {
 
 .transaction-grid::part(header-cell) {
   background: #f8fafc;
-  color: #64748b;
+  color: var(--cashflow-muted-text-color);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.035em;

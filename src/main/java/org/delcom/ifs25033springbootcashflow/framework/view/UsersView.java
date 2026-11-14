@@ -2,7 +2,7 @@ package org.delcom.ifs25033springbootcashflow.framework.view;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
@@ -22,7 +22,7 @@ public class UsersView extends VerticalLayout implements BeforeEnterObserver {
         this.userRepository = userRepository;
         addClassName("content-page");
         setPadding(true);
-        add(new H2("Daftar pengguna"));
+        add(new H1("Daftar pengguna"));
         Grid<User> grid = new Grid<>(User.class, false);
         grid.addClassName("transaction-grid");
         grid.addColumn(User::getId).setHeader("ID").setAutoWidth(true);

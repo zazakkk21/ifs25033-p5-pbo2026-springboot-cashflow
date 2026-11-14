@@ -2,7 +2,7 @@ package org.delcom.ifs25033springbootcashflow.framework.view;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
@@ -22,7 +22,7 @@ public class TransactionsView extends VerticalLayout {
                             IUserRepository userRepository) {
         addClassName("content-page");
         setPadding(true);
-        add(new H2("Riwayat transaksi"));
+        add(new H1("Riwayat transaksi"));
 
         var currentUser = AuthSession.currentUser(userRepository);
         if (currentUser.isEmpty()) {

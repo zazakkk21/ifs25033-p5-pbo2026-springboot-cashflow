@@ -4,7 +4,8 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -30,9 +31,11 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         addClassName("auth-page");
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
+        Main main = new Main();
+        main.addClassName("auth-main");
         Div card = new Div();
         card.addClassName("auth-card");
-        H2 heading = new H2("Selamat datang");
+        H1 heading = new H1("Selamat datang");
         Span subtitle = new Span("Masuk untuk melihat dan mengelola catatan keuangan Anda.");
         subtitle.addClassName("auth-subtitle");
         card.add(heading, subtitle);
@@ -56,7 +59,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         Anchor register = new Anchor("register", "Belum punya akun? Daftar");
         register.addClassName("auth-link");
         card.add(username, password, submit, register);
-        add(card);
+        main.add(card);
+        add(main);
     }
 
     @Override

@@ -1,10 +1,12 @@
 package org.delcom.ifs25033springbootcashflow.framework.view;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Main;
+import com.vaadin.flow.component.html.Nav;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -32,7 +34,7 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         sidebar.setSizeFull();
         sidebar.setPadding(true);
         sidebar.setSpacing(true);
-        H2 logo = new H2("Cashflow");
+        Span logo = new Span("Cashflow");
         logo.addClassName("brand-mark");
         sidebar.add(logo);
         RouterLink dashboard = new RouterLink("Dashboard", FinanceView.class);
@@ -51,7 +53,11 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         Span caption = new Span("Kelola pemasukan dan pengeluaran");
         caption.addClassName("sidebar-caption");
         sidebar.add(caption);
-        addToDrawer(sidebar);
+        Nav navigation = new Nav();
+        navigation.addClassName("cashflow-navigation");
+        navigation.getElement().setAttribute("aria-label", "Navigasi utama");
+        navigation.add(sidebar);
+        addToDrawer(navigation);
         currentUser.ifPresent(user -> {
             Avatar avatar = new Avatar(user.getFullName());
             avatar.addClassName("user-avatar");
@@ -74,6 +80,17 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
             userMenu.addClassName("navbar-user-menu");
             addToNavbar(userMenu);
         });
+    }
+
+    @Override
+    public void showRouterLayoutContent(HasElement content) {
+        if (content == null) {
+            super.showRouterLayoutContent(null);
+            return;
+        }
+        Main main = new Main(content.getElement().getComponent()
+                .orElseThrow(() -> new IllegalArgumentException("Route content must be a Component")));
+        super.showRouterLayoutContent(main);
     }
 
     @Override
