@@ -18,12 +18,14 @@ spring:
       quiet-period: 400ms
 server:
   port: ${APP_PORT:${PORT:8080}}
+  forward-headers-strategy: framework
   servlet:
     session:
       timeout: 8h
       cookie:
         name: CASHFLOWSESSION
         http-only: true
+        secure: true
 app:
   root-username: ${ROOT_USERNAME:admin}
   root-password: ${ROOT_PASSWORD:admin}

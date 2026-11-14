@@ -284,30 +284,42 @@ vaadin-app-layout::part(drawer) {
 }
 
 .action-income {
-  background: #059669;
+  background: #047857;
   color: #fff;
 }
 
-.action-income:hover {
-  background: #047857;
+.action-income:hover:not([disabled]) {
+  background: #065f46;
   box-shadow: 0 5px 14px rgba(5, 150, 105, 0.2);
 }
 
 .action-expense {
-  background: #e11d48;
+  background: #be123c;
   color: #fff;
 }
 
-.action-expense:hover {
-  background: #be123c;
+.action-expense:hover:not([disabled]) {
+  background: #9f1239;
   box-shadow: 0 5px 14px rgba(225, 29, 72, 0.2);
 }
 
-.action-income:hover,
-.action-expense:hover,
-.action-refresh:hover,
-.dialog-cancel:hover,
-.delete-action:hover {
+.action-income[disabled],
+.action-expense[disabled] {
+  background: #e2e8f0;
+  color: #475569;
+  opacity: 1;
+}
+
+vaadin-button:focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 3px;
+}
+
+.action-income:hover:not([disabled]),
+.action-expense:hover:not([disabled]),
+.action-refresh:hover:not([disabled]),
+.dialog-cancel:hover:not([disabled]),
+.delete-action:hover:not([disabled]) {
   transform: translateY(-1px);
 }
 
